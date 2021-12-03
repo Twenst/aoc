@@ -1,4 +1,4 @@
-#include <stdbool.h> 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,17 +86,17 @@ int32_t posMultAim(int32_t tab[][2], int32_t n){
 
 //----Day Three----//
 long binCompt(long * bin, int32_t n, int32_t m){//n nombre d'éléments dans le tableau, m longueur des binaires 
-    long gammaRate = 0; long buffer = 0; long epsilonRate = 0;
-    for (int k = m-1; k > -1; k--){
+    long gammaRate = 0, buffer = 0, epsilonRate = 0;
+    for (int k = m-1; k >= 0; k--){
         buffer = 0;
         for (int i = 0; i < n; i++){
             buffer += (long) (bin[i]/(long)pow(10,k));
             bin[i] -= (long) (bin[i]/(long)pow(10,k) * (long)pow(10,k));
         }
-        printf("%li, %li\n", buffer,(2*buffer/n) * (long)pow(10,k));
-        gammaRate += (long)(2*buffer/n) * (long)pow(10,k);
-        epsilonRate += (long) ((1-(buffer/(n/2)))) * (long)pow(10,k); 
+        gammaRate += (long)((2*buffer-1)/n) * (long)pow(10,k); epsilonRate += (long) ((1-((2*buffer-1)/n)) * (long)pow(10,k));
+        //(2*buffer-1) car en cas d'égalité entre les 0 et les 1 (:kappa:) c'est le 0 qui l'emporte (merci à l'énoncé qui ne le dit nulle part btw)
     }
+    
     return (binToInt(gammaRate) *binToInt(epsilonRate));
 }
 
