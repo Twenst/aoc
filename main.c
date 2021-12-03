@@ -1,8 +1,9 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "fonct.h"
-// gcc -Wall main.c aoc.c puzzleInput.c -o aoc
+// gcc -Wall main.c aoc.c puzzleInput.c -o aoc -lm
 
 //----Bench----//
 void dayOne(){
@@ -15,8 +16,12 @@ void dayTwo(){
     printf("Déplacement (avec aim): %i\n", posMultAim(inputJ2, 1000));
 }
 
+void dayThree(){
+    printf("%li\n", binCompt(inputJ3, 1000, 12));
+}
+
 //----Main----//
 int main(){
-    dayTwo();
+    dayThree();
     return EXIT_SUCCESS;
 }
